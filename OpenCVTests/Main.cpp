@@ -52,20 +52,29 @@ int main(int argc, char** argv)
 		bool success = cap.read(cam);
 		Mat render;
 
-		if (GetAsyncKeyState(VK_LEFT) && !prevKeyDown)
+		// Handle left/right input for changing test operation.
+		if (GetAsyncKeyState(VK_LEFT) &&
+			!prevKeyDown)
 		{
 			currentTest--;
 			prevKeyDown = true;
 		}
-		else if (GetAsyncKeyState(VK_RIGHT) && !prevKeyDown)
+		else if (GetAsyncKeyState(VK_RIGHT) &&
+			!prevKeyDown)
 		{
 			currentTest++;
 			prevKeyDown = true;
 		}
-		else 
+		else if (GetAsyncKeyState(VK_RIGHT) ||
+			GetAsyncKeyState(VK_LEFT))
+		{
+			prevKeyDown = true;
+		}
+		else
 		{
 			prevKeyDown = false;
 		}
+
 
 		if (currentTest < 0)
 		{

@@ -16,7 +16,7 @@ Mat additive_background_test(Mat& src)
 	if (bg == nullptr)
 	{
 		bg = new Mat();
-		*bg = src;
+		*bg = src.clone();
 	}
 
 	addWeighted(src, BLEND_ALPHA, *bg, 1.0 - BLEND_ALPHA, 0.0, *bg);
@@ -29,7 +29,7 @@ Mat motion_detection_test(Mat& src)
 	if (bg == nullptr)
 	{
 		bg = new Mat();
-		*bg = src;
+		*bg = src.clone();
 	}
 
 	addWeighted(src, BLEND_ALPHA, *bg, 1.0 - BLEND_ALPHA, 0.0, *bg);
